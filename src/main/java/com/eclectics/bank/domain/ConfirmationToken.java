@@ -33,7 +33,7 @@ public class ConfirmationToken extends AbstractAuditingEntity<Long> implements U
     @Column(name = "token", nullable = false)
     private String token;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "expires_at", nullable = false)

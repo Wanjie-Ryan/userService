@@ -1,6 +1,7 @@
 // Customer.java
 package com.eclectics.bank.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
@@ -24,7 +25,8 @@ public class Customer {
     private String employerName;
     private Float monthlyIncome;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Address> addresses;
 
 

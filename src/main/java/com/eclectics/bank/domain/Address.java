@@ -1,5 +1,6 @@
 package com.eclectics.bank.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,8 @@ public class Address {
     private UUID id;
 
     @ManyToOne()
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false )
+    @JsonBackReference
     private Customer customer;
 
     @Column(name = "city")

@@ -31,7 +31,11 @@ public class SecurityConfig {
             "/webjars/",
             "/api/token/logout/", "/api/token", "/api/token/refresh-token",
             "/api/registration", "/api/registration/confirm/", "/api/registration/forgot",
-            "/api/registration/reset", "/api/registration/resend"
+            "/api/registration/reset", "/api/registration/resend",
+            "/api/bank/users/register",
+            "/api/bank/users/confirm",
+            "/api/bank/users/set-password",
+            "/api/bank/users/login",
     };
 
     public SecurityConfig(JWTAuthenticationEntryPoint unauthorizedHandler) {
