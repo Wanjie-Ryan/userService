@@ -8,6 +8,9 @@ import com.eclectics.bank.repository.AddressRepository;
 import com.eclectics.bank.repository.ConfirmationTokenRepository;
 import com.eclectics.bank.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.slf4j.*;
 import org.springframework.stereotype.Service;
@@ -15,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private CustomerRepository customerRepo;
@@ -120,5 +123,14 @@ public class UserService {
 
     public ConfirmationToken findByUsername(String username) {
         return confirmationTokenRepo.findByUsername(username).orElseThrow(() -> new RuntimeException("Invalid username"));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+
+            return confirmationTokenRepo.findByUsername(username)
+                    .orElseThrow(() -> new UsernameNotFoundException(String.format("USER NOT FOUND!!!", username)));
+
     }
 }

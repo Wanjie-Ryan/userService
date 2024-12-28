@@ -1,60 +1,119 @@
+// Customer.java
 package com.eclectics.bank.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "customers")
 @Data
-
 public class Customer {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(nullable = false, name = "full_name")
     private String fullName;
-
-    @Column(nullable = false, name = "date_of_birth")
     private LocalDate dateOfBirth;
-
-    @Column(nullable = false, name = "gender")
     private Gender gender;
-
-    @Column(nullable = false, unique = true, name = "national_id")
     private String nationalId;
-
-    @Column(nullable = false, unique = true, name = "phone")
     private String phone;
-
-    @Column(unique = true, name = "email")
     private String email;
-
-    @Column(name = "occupation")
     private String occupation;
-
-    @Column(name = "employer_name")
     private String employerName;
-
-    @Column(name = "monthly_income")
     private Float monthlyIncome;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    // no need to fetch customer each and everytime, fetch only when needed.
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Address> addresses;
 
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getFullName() {
+        return fullName;
+    }
 
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
 
+    public Gender getGender() {
+        return gender;
+    }
 
+    public String getNationalId() {
+        return nationalId;
+    }
 
+    public String getPhone() {
+        return phone;
+    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public String getEmployerName() {
+        return employerName;
+    }
+
+    public Float getMonthlyIncome() {
+        return monthlyIncome;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    // Add the missing setter methods
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public void setEmployerName(String employerName) {
+        this.employerName = employerName;
+    }
+
+    public void setMonthlyIncome(Float monthlyIncome) {
+        this.monthlyIncome = monthlyIncome;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 }

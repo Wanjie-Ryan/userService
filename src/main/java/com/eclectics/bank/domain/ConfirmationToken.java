@@ -15,10 +15,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "credentials")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-
 public class ConfirmationToken extends AbstractAuditingEntity<Long> implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -80,6 +76,16 @@ public class ConfirmationToken extends AbstractAuditingEntity<Long> implements U
     }
 
     @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
         // allow you to manage and track account expiry
         return true;
@@ -102,5 +108,81 @@ public class ConfirmationToken extends AbstractAuditingEntity<Long> implements U
     @Override
     public Long getId() {
         return getCredentialsId();
+    }
+
+    public Long getCredentialsId() {
+        return credentialsId;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setCredentialsId(Long credentialsId) {
+        this.credentialsId = credentialsId;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getExpiresAt() {
+        return expiresAt;
+    }
+
+    public void setExpiresAt(LocalDateTime expiresAt) {
+        this.expiresAt = expiresAt;
+    }
+
+    public LocalDateTime getConfirmedAt() {
+        return confirmedAt;
+    }
+
+    public void setConfirmedAt(LocalDateTime confirmedAt) {
+        this.confirmedAt = confirmedAt;
+    }
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(boolean verified) {
+        isVerified = verified;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
